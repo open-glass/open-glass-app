@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:open_glass_app/open_glass_api.dart';
-import 'package:open_glass_app/widget/star_citizen_base_ship_actions.dart';
+import 'package:open_glass_app/widget/sc_base_ship_actions.dart';
 
 void main() {
   runApp(MyApp());
@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text('Star Citizen'),
                     onPressed: () {
                       api.chooseGame(Game.STAR_CITIZEN);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => new StarCitizenBaseShipActions(api)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => new SCBaseShipActions(api)));
                     }
                 ),
               ],

@@ -4,9 +4,9 @@ import 'package:open_glass_app/open_glass_api.dart';
 
 import 'package:open_glass_app/widget/api_widget.dart';
 
-class StarCitizenBaseShipActions extends ApiWidget {
+class SCBaseShipActions extends ApiWidget {
   
-  StarCitizenBaseShipActions(OpenGlassApi api) : super(api);
+  SCBaseShipActions(OpenGlassApi api) : super(api);
 
 
   @override
