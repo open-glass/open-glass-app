@@ -3,7 +3,12 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 enum Game {
-  STAR_CITIZEN,
+  STAR_CITIZEN
+}
+extension GameName on Game {
+  String get name {
+    return this.toString().split('.').last;
+  }
 }
 
 class OpenGlassApi {
@@ -11,11 +16,11 @@ class OpenGlassApi {
   final String apiUrl;
   final String apiKey;
 
-  OpenGlassApi(this.apiUrl, this.apiKey);
+  const OpenGlassApi(this.apiUrl, this.apiKey);
 
   void chooseGame(Game game) async {
     var params = _params({
-      "game" : game.toString()
+      "game" : game.name
     });
     _post('/chooseGame', params);
   }
@@ -31,20 +36,21 @@ class OpenGlassApi {
   }
 
   Future<Response> _post(String endPoint, Map<String, String> params) {
-    return HttpUtils.postForFullResponse(apiUrl + endPoint, queryParameters: params)
+    return HttpUtils.postForFullResponse(apiUrl + endPoint, queryParameters: params, body: '')
         .then(_handleError);
   }
 
-  void _handleError(Response response) {
+  Response _handleError(Response response) {
     if (response.statusCode != 200) {
       //TODO handle error stuff here in the future, for now just log it
       print('Error occured on api call:');
       print(response);
     }
+    return response;
   }
 
   Map<String, String> _params(Map<String, String> params) {
-    params.update("API_KEY", (value) => apiKey);
+    params.update("API_KEY", (value) => apiKey, ifAbsent: () => apiKey);
     return params;
   }
 }
