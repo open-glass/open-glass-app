@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:open_glass_app/open_glass_api.dart';
+import 'package:open_glass_app/widget/star_citizen_base_ship_actions.dart';
 
 void main() {
   runApp(MyApp());
@@ -65,20 +66,23 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Send b to OpenGlass',
+              'Choose game'
             ),
-            MaterialButton(
-              child: Text('Star Citizen'),
-              onPressed: () => api.chooseGame(Game.STAR_CITIZEN)
+            ButtonBar(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                RaisedButton(
+                    child: Text('Star Citizen'),
+                    onPressed: () {
+                      api.chooseGame(Game.STAR_CITIZEN);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => new StarCitizenBaseShipActions(api)));
+                    }
+                ),
+              ],
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => api.pressKey('b'),
-        tooltip: 'Press b',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
