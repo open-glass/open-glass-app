@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:open_glass_app/open_glass_api.dart';
+import 'package:open_glass_app/widget/prefs.dart';
 import 'package:open_glass_app/widget/sc_base_ship_actions.dart';
+import 'package:open_glass_app/widget/settings.dart';
 
 void main() {
   runApp(MyApp());
@@ -54,8 +56,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  static const OpenGlassApi api = const OpenGlassApi('http://192.168.178.20:8080', 'test');
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -66,6 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => new Settings()))
+          )
+        ],
       ),
       body: Center(
         child: Column(
@@ -80,8 +86,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                     child: Text('Star Citizen'),
                     onPressed: () {
-                      api.chooseGame(Game.STAR_CITIZEN);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => new SCBaseShipActions(api)));
+                      getString("settings.secure").then((secure) {
+                        getString("settings.host").then((host) {
+                          getString("settings.port").then((port) {
+                            getString("settings.apiKey").then((apiKey) {
+                              OpenGlassApi api = new OpenGlassApi(secure + "://" + host + ":" + port, apiKey);
+                              api.chooseGame(Game.STAR_CITIZEN);
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => new SCBaseShipActions(api)));
+                            });
+                          });
+                        });
+                      });
                     }
                 ),
               ],
