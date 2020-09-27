@@ -9,14 +9,25 @@ void main() {
   runApp(MyApp());
 }
 
+const Color PRIMARY_COLOR = Colors.blue;
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'OpenGlass Debug',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: PRIMARY_COLOR,
+        primarySwatch: PRIMARY_COLOR,
+        accentColor: PRIMARY_COLOR,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      darkTheme: ThemeData(
+        primaryColor: PRIMARY_COLOR,
+        primarySwatch: PRIMARY_COLOR,
+        accentColor: PRIMARY_COLOR,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        brightness: Brightness.dark,
       ),
       home: MyHomePage(title: 'Debug OpenGlass'),
     );
