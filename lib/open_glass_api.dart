@@ -34,6 +34,16 @@ class OpenGlassApi {
     _post('/presskey', params);
   }
 
+  void holdKey(String key) {
+    if (key.length != 1) {
+      return;
+    }
+    var params = _params({
+      "key": key
+    });
+    _post('/holdkey', params);
+  }
+
   Future<Response> _post(String endPoint, Map<String, String> params) {
     return HttpUtils.postForFullResponse(apiUrl + endPoint, queryParameters: params, body: '')
         .then(_handleError);
