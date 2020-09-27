@@ -17,8 +17,8 @@ class SCButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
-      height: 150,
+      width: 125,
+      height: 125,
       decoration: decoration,
       child: FlatButton(
         textColor: textColor,
