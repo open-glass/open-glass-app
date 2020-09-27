@@ -1,16 +1,10 @@
-# open_glass_app
+# Open Glass App
 
-Flutter app to interface with OpenGlass server
+Flutter app to interface with [OpenGlass server](https://github.com/open-glass/open-glass-server)
 
-## Getting Started
+## Supported Games
+* Star Citizen (basic)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Adding new Games
+1. Add the game to the Game enum in `open_glass_api.dart` and implement a widget offering the according buttons.
+2. Follow the instructions in the [server component](https://github.com/open-glass/open-glass-server) to extend the backend
