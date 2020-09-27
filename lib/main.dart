@@ -79,6 +79,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         getString("settings.host").then((host) {
                           getString("settings.port").then((port) {
                             getString("settings.apiKey").then((apiKey) {
+                              if (secure == null
+                                  || host == null
+                                  || port == null
+                                  || apiKey == null) {
+                                Scaffold.of(context).showSnackBar(SnackBar(
+                                  content: Text('Your settings are invalid!'),
+                                ));
+                              }
                               OpenGlassApi api = new OpenGlassApi(secure + "://" + host + ":" + port, apiKey);
                               api.chooseGame(Game.STAR_CITIZEN);
                               Navigator.push(context, MaterialPageRoute(builder: (context) => new SCBaseShipActions(api)));
