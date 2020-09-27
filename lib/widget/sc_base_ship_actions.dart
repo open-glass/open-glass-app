@@ -22,56 +22,73 @@ class SCBaseShipActions extends ApiWidget {
       body: Container(
         decoration: scBackground,
         child: Center(
-          child: Column(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ButtonBar(
-                mainAxisSize: MainAxisSize.min,
-                alignment: MainAxisAlignment.center,
+              SCButton(
+                text: 'Eject',
+                decoration: scRedButtonBackground,
+                textColor: scRedTextColor,
+                onPressed: () => api.holdKey('Y'),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SCButton(
-                    text: 'Landing Gear',
-                    decoration: scBlueButtonBackground,
-                    textColor: scBlueTextColor,
-                    onPressed: () => api.pressKey('N'),
+                  ButtonBar(
+                    mainAxisSize: MainAxisSize.min,
+                    alignment: MainAxisAlignment.center,
+                    children: [
+                      SCButton(
+                        text: 'Landing Gear',
+                        decoration: scBlueButtonBackground,
+                        textColor: scBlueTextColor,
+                        onPressed: () => api.pressKey('N'),
+                      ),
+                      SCButton(
+                        text: 'Gimbals',
+                        decoration: scBlueButtonBackground,
+                        textColor: scBlueTextColor,
+                        onPressed: () => api.pressKey('G'),
+                      ),
+                      SCButton(
+                        text: 'Spool Quantum Drive',
+                        decoration: scBlueButtonBackground,
+                        textColor: scBlueTextColor,
+                        onPressed: () => api.pressKey('B'),
+                      ),
+                    ],
                   ),
-                  SCButton(
-                    text: 'Gimbals',
-                    decoration: scRedButtonBackground,
-                    textColor: scRedTextColor,
-                    onPressed: () => api.pressKey('G'),
-                  ),
-                  SCButton(
-                    text: 'Spool Quantum Drive',
-                    decoration: scBlueButtonBackground,
-                    textColor: scBlueTextColor,
-                    onPressed: () => api.pressKey('B'),
+                  ButtonBar(
+                    mainAxisSize: MainAxisSize.min,
+                    alignment: MainAxisAlignment.center,
+                    children: [
+                      SCButton(
+                        text: 'Weapons Power',
+                        decoration: scBlueButtonBackground,
+                        textColor: scBlueTextColor,
+                        onPressed: () => api.pressKey('P'),
+                      ),
+                      SCButton(
+                        text: 'Shields Power',
+                        decoration: scBlueButtonBackground,
+                        textColor: scBlueTextColor,
+                        onPressed: () => api.pressKey('O'),
+                      ),
+                      SCButton(
+                        text: 'Engines Power',
+                        decoration: scBlueButtonBackground,
+                        textColor: scBlueTextColor,
+                        onPressed: () => api.pressKey('I'),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              ButtonBar(
-                mainAxisSize: MainAxisSize.min,
-                alignment: MainAxisAlignment.center,
-                children: [
-                  SCButton(
-                    text: 'Weapons Power',
-                    decoration: scBlueButtonBackground,
-                    textColor: scBlueTextColor,
-                    onPressed: () => api.pressKey('P'),
-                  ),
-                  SCButton(
-                    text: 'Shields Power',
-                    decoration: scBlueButtonBackground,
-                    textColor: scBlueTextColor,
-                    onPressed: () => api.pressKey('O'),
-                  ),
-                  SCButton(
-                    text: 'Engines Power',
-                    decoration: scBlueButtonBackground,
-                    textColor: scBlueTextColor,
-                    onPressed: () => api.pressKey('I'),
-                  ),
-                ],
+              SCButton(
+                text: 'Self destruct',
+                decoration: scRedButtonBackground,
+                textColor: scRedTextColor,
+                onPressed: () => api.holdKey('BACK_SPACE'),
               ),
             ],
           ),
