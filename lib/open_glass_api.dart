@@ -25,9 +25,6 @@ class OpenGlassApi {
   }
 
   void pressKey(String key) {
-    if (key.length != 1) {
-      return;
-    }
     var params = _params({
       "key": key
     });
@@ -35,9 +32,6 @@ class OpenGlassApi {
   }
 
   void holdKey(String key) {
-    if (key.length != 1) {
-      return;
-    }
     var params = _params({
       "key": key
     });
